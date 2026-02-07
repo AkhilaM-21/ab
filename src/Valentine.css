@@ -1,0 +1,229 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #ffffff, #c6e8f6);
+  background-attachment: fixed;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Override default root styles to allow full width centering */
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  text-align: center;
+  padding: 20px;
+  min-height: 100vh;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+h1 {
+  color: #d63384;
+  margin-bottom: 30px;
+}
+
+.text-content h1,
+.text-content p {
+  background: linear-gradient(to right, #0047AB, #56CCF2, #0047AB);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.text-content p {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.text-content {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px 40px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(5px);
+  z-index: 2;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .days-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .days-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.day-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  border: 3px solid transparent;
+  background-image: linear-gradient(white, white), linear-gradient(135deg, #0047AB, #56CCF2);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.day-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 71, 171, 0.25);
+}
+
+.day-card h3 {
+  color: #0047AB;
+  margin: 10px 0 5px;
+  font-size: 1.4rem;
+}
+
+.day-card small {
+  color: #56CCF2;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.day-icon {
+  font-size: 6rem;
+  display: block;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
+  transition: transform 0.3s ease;
+}
+
+.day-card:hover .day-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Day Page Styles */
+.day-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Floating Hearts Animation */
+.floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20%;
+  opacity: 0;
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.heart-beat {
+  display: inline-block;
+  animation: beat 1.2s infinite ease-in-out;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.25); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.15); }
+  60% { transform: scale(1); }
+}
+
+/* Ensure content stays above hearts */
+.app-container > *:not(.floating-hearts) {
+  position: relative;
+  z-index: 2;
+}
+
+.day-container.locked {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.content-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.icon-large {
+  font-size: 8rem;
+  margin-bottom: 20px;
+}
+
+.special-message {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background-color: white;
+  color: #d63384;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+button:hover {
+  background-color: #f8f9fa;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

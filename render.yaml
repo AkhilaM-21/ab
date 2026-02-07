@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: valentine-week
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
